@@ -1,4 +1,6 @@
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
+
 function sendEmailViaSMTP($sender, $recipient, $subject, $body)
 {
     $mail = new PHPMailer(true);

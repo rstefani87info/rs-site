@@ -1,0 +1,14 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # Verifica se la richiesta inizia con /api/
+    RewriteCond %{REQUEST_URI} ^/api/
+    # Riscrivi la richiesta per puntare a ../structure/application/index.php con il parametro @api
+    RewriteRule ^(.*)$ /structure/application/index.php?@api=$1 [QSA,NE,L]
+
+    # Altrimenti, se la richiesta non inizia con /api/, riscrivila con il parametro @path
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ /structure/application/index.php?@path=$1 [QSA,NE,L]
+</IfModule>

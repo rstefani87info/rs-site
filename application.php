@@ -15,16 +15,16 @@ includeGadgets();
 
 $siteData = [];
 $footer_script = [];
-$functionName = $_REQUEST['@api'] ?? '';
+$apiName = $_REQUEST['@api'] ?? '';
 
-if (!empty($functionName)) {
-    if (preg_match('/^js|javascript|jscript|script$/i', $functionName)) {
+if (!empty($apiName)) {
+    if (preg_match('/^js|javascript|jscript|script$/i', $apiName)) {
         showAsScript();
     } else  {
-        $api = isApiFunction($functionName);
-        isolateResponseAs($api['content-type'] ?? "application/json; charset=utf8mb4", function () use ($api, $functionName) {
+        $api = isApiFunction($apiName);
+        isolateResponseAs($api['content-type'] ?? "application/json; charset=utf8mb4", function () use ($api, $apiName) {
             if ($api){
-                $res=invokeFunctionFromRequest($functionName, $api['method']);
+                $res=invokeFunctionFromRequest($apiName, $api['method']);
                 echo preg_match('/[a-z]ml/i',$api['content-type'])?$res:json_encode($res);
             }else
                 sendError403();
