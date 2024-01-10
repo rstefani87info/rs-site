@@ -1,0 +1,6 @@
+{
+	"name" : "rs-site/rs-site",
+	"require" : {
+		"phpmailer/phpmailer" : "~6.9"
+	}
+}
